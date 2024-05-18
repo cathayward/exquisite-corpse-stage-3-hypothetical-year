@@ -4,7 +4,6 @@ let numberOfImages = 26;
 let numberOfFlowerImages = 12;
 let imageWidth, imageHeight;
 let currentImageIndex = 0; 
-let currentFlowerImageIndex = 0;
 let daysPassed = 0;
 let flowerData;
 let monthNames = []; // Array to store month names
@@ -20,7 +19,7 @@ let daysMapping = [
   0, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 16
 ];
 
-let sumDaysMapping = []
+let sumDaysMapping = [];
 
 for (let i = 0; i < daysMapping.length; i++) {
   sumDaysMapping[i] = daysMapping[i] + (sumDaysMapping[i - 1] || 0);
@@ -34,8 +33,10 @@ for (let i = 1; i < days.length; i++) {
 }
 
 function preload() {
-  flowerData = loadTable('flowers.csv', 'csv', 'header', loadData); // Load CSV data and call loadData function when done
-
+  // Load CSV data
+  flowerData = loadTable('flowers.csv', 'csv', 'header')
+  
+  // Load images
   for (let i = 1; i <= numberOfImages; i++) {
     images.push(loadImage('images/h' + i + '.jpg'));
   }
@@ -43,31 +44,8 @@ function preload() {
   for(let i = 1; i <= numberOfFlowerImages; i++){
     flowerImages.push(loadImage('images/f' + i + '.png'))
   }
-
-  console.log("Order of flower images:", flowerImages);
 }
 
-function loadData(data) {
-  // Extract month names from the CSV file
-  for (let i = 0; i < data.getRowCount(); i++) {
-    monthNames.push(data.getString(i, 'Month'));
-    let month = data.getString(i, 'Month');
-    let flowerObj = {};
-    flowerObj['Lilies'] = data.getNum(i, 'Lilies');
-    flowerObj['Asters'] = data.getNum(i, 'Asters');
-    flowerObj['Irises'] = data.getNum(i, 'Irises');
-    flowerObj['Stock'] = data.getNum(i, 'Stock');
-    flowerObj['Ranunculus'] = data.getNum(i, 'Ranunculus');
-    flowerObj['Daffodils'] = data.getNum(i, 'Daffodils');
-    flowerObj['Hyacinths'] = data.getNum(i, 'Hyacinths');
-    flowerObj['Orchids'] = data.getNum(i, 'Orchids');
-    flowerObj['Snapdragons'] = data.getNum(i, 'Snapdragons');
-    flowerObj['Sunflowers'] = data.getNum(i, 'Sunflowers');
-    flowerObj['Lavenders'] = data.getNum(i, 'Lavenders');
-    flowerObj['Gardenias'] = data.getNum(i, 'Gardenias');
-    monthData[month] = flowerObj;
-  }
-}
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -78,12 +56,12 @@ function setup() {
   for (let i = 1; i <= 12; i++) {
     monthSelect.option(i);
   }
-  monthSelect.changed(monthSelected);
   
   daySelect = createSelect();
   for (let i = 1; i <= days[1]; i++) {
     daySelect.option(i);
   }
+  monthSelect.changed(monthSelected);
   daySelect.changed(daySelected);
 
   changeDays();
@@ -91,25 +69,108 @@ function setup() {
 
 function monthSelected() {
   month = int(this.value());
-  // Update the day select box options based on the selected month
-  daySelect.remove();
-  daySelect = createSelect();
-  for (let i = 1; i <= days[month]; i++) {
-    daySelect.option(i);
+  day = 1
+  changeDays();
+
+  if (month === 1){
+    let januaryRow = flowerData.getRow(1); // Assuming January is the first row
+    for (let i = 1; i <= numberOfFlowerImages; i++) {
+      let flowerValue = januaryRow.getNum('f' + i);
+      if (flowerValue > 0) {
+        image(flowerImages[0], 50, windowHeight - 300); // Images are zero-indexed, so use i - 1 to access the correct index in flowerImages array
+      }
+    }
+  } else if (month === 2){
+    let februaryRow = flowerData.getRow(2); 
+    for (let i = 1; i <= numberOfFlowerImages; i++) {
+      let flowerValue = februaryRow.getNum('f' + i);
+      if (flowerValue > 0) {
+        image(flowerImages[1], 50, windowHeight - 300); 
+      }
+    }
+  } else if (month === 3){
+    let marchRow = flowerData.getRow(3); 
+    for (let i = 1; i <= numberOfFlowerImages; i++) {
+      let flowerValue = marchRow.getNum('f' + i);
+      if (flowerValue > 0) {
+        image(flowerImages[2], 50, windowHeight - 300); 
+      }
+    }
+  } else if (month === 4){
+    let aprilRow = flowerData.getRow(4); 
+    for (let i = 1; i <= numberOfFlowerImages; i++) {
+      let flowerValue = aprilRow.getNum('f' + i);
+      if (flowerValue > 0) {
+        image(flowerImages[3], 50, windowHeight - 300); 
+      }
+    }
+  } else if (month === 5){
+    let mayRow = flowerData.getRow(5); 
+    for (let i = 1; i <= numberOfFlowerImages; i++) {
+      let flowerValue = mayRow.getNum('f' + i);
+      if (flowerValue > 0) {
+        image(flowerImages[4], 50, windowHeight - 300); 
+      }
+    }
+  } else if (month === 6){
+    let juneRow = flowerData.getRow(6); 
+    for (let i = 1; i <= numberOfFlowerImages; i++) {
+      let flowerValue = juneRow.getNum('f' + i);
+      if (flowerValue > 0) {
+        image(flowerImages[5], 50, windowHeight - 300); 
+      }
+    }
+  } else if (month === 7){
+    let julyRow = flowerData.getRow(7); 
+    for (let i = 1; i <= numberOfFlowerImages; i++) {
+      let flowerValue = julyRow.getNum('f' + i);
+      if (flowerValue > 0) {
+        image(flowerImages[6], 50, windowHeight - 300); 
+      }
+    }
+  } else if (month === 8){
+    let augustRow = flowerData.getRow(8); 
+    for (let i = 1; i <= numberOfFlowerImages; i++) {
+      let flowerValue = augustRow.getNum('f' + i);
+      if (flowerValue > 0) {
+        image(flowerImages[7], 50, windowHeight - 300); 
+      }
+    }
+  } else if (month === 9){
+    let septemberRow = flowerData.getRow(9); 
+    for (let i = 1; i <= numberOfFlowerImages; i++) {
+      let flowerValue = septemberRow.getNum('f' + i);
+      if (flowerValue > 0) {
+        image(flowerImages[8], 50, windowHeight - 300); 
+      }
+    }
+  } else if (month === 10){
+    let octoberRow = flowerData.getRow(10); 
+    for (let i = 1; i <= numberOfFlowerImages; i++) {
+      let flowerValue = octoberRow.getNum('f' + i);
+      if (flowerValue > 0) {
+        image(flowerImages[9], 50, windowHeight - 300); 
+      }
+    }
+  } else if (month === 11){
+    let novemberRow = flowerData.getRow(11); 
+    for (let i = 1; i <= numberOfFlowerImages; i++) {
+      let flowerValue = novemberRow.getNum('f' + i);
+      if (flowerValue > 0) {
+        image(flowerImages[10], 50, windowHeight - 300); 
+      }
+    }
+  } else if (month === 12){
+    let decemberRow = flowerData.getRow(12); 
+    for (let i = 1; i <= numberOfFlowerImages; i++) {
+      let flowerValue = decemberRow.getNum('f' + i);
+      if (flowerValue > 0) {
+        image(flowerImages[11], 50, windowHeight - 300); 
+      }
+    }
   }
-  daySelect.changed(daySelected);
-  
-  // Ensure the currently selected day is valid for the selected month
-  let selectedDay = int(daySelect.value());
-  if (selectedDay > days[month]) {
-    daySelect.value(days[month]); // Set the day to the maximum for the selected month
-    day = days[month];
-  } else {
-    day = selectedDay;
   }
-  
-  changeDays(); // Call changeDays() when the month changes
-}
+
 
 function daySelected() {
   day = int(this.value());
@@ -120,11 +181,6 @@ function changeDays() {
   daysPassed = sumDays[month - 1] + day;
   daysPassed = (daysPassed + 153) % 366;
   
-  // Update the index of the flower image based on the current date
-  currentFlowerImageIndex = 0;
-  while (daysPassed > sumDaysMapping[currentFlowerImageIndex]) currentFlowerImageIndex++;
-  currentFlowerImageIndex = currentFlowerImageIndex % numberOfFlowerImages;
-
   currentImageIndex = 0;
   while (daysPassed > sumDaysMapping[currentImageIndex]) {
     currentImageIndex++;
@@ -132,18 +188,12 @@ function changeDays() {
   currentImageIndex = currentImageIndex % numberOfImages;
 }
 
-
 function draw() {
   background(0);
 
   let x = width / 2 - imageWidth / 2;
   let y = height / 2 - imageHeight / 2;
   image(images[currentImageIndex], x, y);
-
-  // Display the selected flower image
-  let flowerX = width / 2 + 50; // Adjust the position of the flower image
-  let flowerY = height / 2 - imageHeight / 2;
-  image(flowerImages[currentFlowerImageIndex], 100, windowHeight - 300);
 
   textSize(20);
   fill(255);
