@@ -66,40 +66,28 @@ function setup() {
   daySelected();
   changeDays();
   monthSelected();
-  addFlowers();
-}
-
-function monthSelected() {
-  month = int(monthSelect.value());
-  day = 1;
-  daySelect.value(day);
-  changeDays();
 }
 
 function addFlowers() {
-  for (x = 0; x < flowerData.getRow(month); x++){
-  let row = flowerData.getRow(month);
-  let countLilies = row.get("Lilies");
-    if (countLilies > 0) {
-      for(y = 0; y < countLilies; y++){
-      image(flowerImages[0], random(width), height - 300) 
+  let selectedMonth = int(monthSelect.value());
+  let row = flowerData.getRow(selectedMonth-1);
+
+  if (row !== null) {
+    let flowerX = 50;
+    let flowerY = height - 300;
+    flowerGap = windowWidth / 5 - 250;
+ 
+    for (let flowerType of flowerData.columns) {
+     let count = row.get(flowerType);
+     if (count > 0) {
+        let imageIndex = flowerData.columns.indexOf(flowerType);
+        for (let i = 0; i < count; i++) {
+          image(flowerImages[imageIndex], flowerX, flowerY);
+          flowerX += flowerImages[imageIndex].width + flowerGap;
+        }
+      }
     }
   }
-
-  let countAsters = row.get("Asters");
-  if (countAsters > 0) {
-    for(y = 0; y < countAsters; y++){
-      image(flowerImages[1], random(width), height - 300)
-    }
-  }
-}
-}
-
-
-
-function daySelected() {
-  day = int(daySelect.value());
-  changeDays(); // Call changeDays() when the day changes
 }
 
 function changeDays() {
@@ -113,13 +101,28 @@ function changeDays() {
   currentImageIndex = currentImageIndex % numberOfImages;
 }
 
+function monthSelected() {
+  month = int(monthSelect.value());
+  day = 1;
+  daySelect.value(day);
+  changeDays();
+  addFlowers();
+}
+
+function daySelected() {
+  day = int(daySelect.value());
+  changeDays(); // Call changeDays() when the day changes
+}
+
 function draw() {
   background(0);
 
   let x = width / 2 - imageWidth / 2;
   let y = height / 2 - imageHeight / 2;
 
-  image(images[currentImageIndex], x, y);
+  image(images[currentImageIndex], x, y); 
+
+  addFlowers();
 
   textSize(20);
   fill(255);
