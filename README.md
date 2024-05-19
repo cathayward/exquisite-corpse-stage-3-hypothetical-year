@@ -54,11 +54,11 @@ The program offsets the number of days in the past to match the seasonal scenery
 
 
 ### 🟩 Stage 3
-- Name/Alias:
-- Github account:
-- Published webpage for stage 3:
+- Name/Alias: Cat
+- Github account: https://github.com/cathayward
+- Published webpage for stage 3: https://cathayward.github.io/exquisite-corpse-stage-3-hypothetical-year/
 
-*... comments to be added here*
+Taking inspiration from natural imagery, I wanted to create a sketch that used data to display the types of flowers thriving in each month in New Zealand. I found it interesting that the initial sketch seemed to start the year in the winter months and get hotter around June and July, as that aligns with the cycle of events within the Northern Hemisphere rather than where we are in the Southern Hemisphere. Despite this, I wanted to create a sense of juxtaposition. I found data on twelve different plants and the months in which they each grow best, and made it so that they show up in their corresponding month. The flowers that grow best in warm climates appear when the background depicts snow, while those that prefer colder climates appear when the heat of the world is very apparent. I think this oxymoron is very indicative of the ideas that Ruitang mentioned, specifically the idea that we are getting swept away by the torrent of time. In our busy daily lives, do we really stop to smell the flowers? Or do we only notice them when they are no longer there for us to appreciate?
 
 ### 🟦 Stage 4
 - Name/Alias:
