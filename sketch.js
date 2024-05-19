@@ -4,11 +4,8 @@ let numberOfImages = 26;
 let numberOfFlowerImages = 12;
 let imageWidth, imageHeight;
 let currentImageIndex = 0; 
-let currentFlowerIndex = 0;
 let daysPassed = 0;
 let flowerData;
-let monthNames = []; // Array to store month names
-let monthData = {}; // Object to store flower data for each month
 
 let monthSelect;
 let daySelect;
@@ -80,18 +77,23 @@ function monthSelected() {
 }
 
 function addFlowers() {
-  let row = flowerData.getRow(month + 1);
-
+  for (x = 0; x < flowerData.getRow(month); x++){
+  let row = flowerData.getRow(month);
   let countLilies = row.get("Lilies");
+    if (countLilies > 0) {
+      for(y = 0; y < countLilies; y++){
+      image(flowerImages[0], random(width), height - 300) 
+    }
+  }
+
   let countAsters = row.get("Asters");
-
-  if (countLilies > 0) {
-    currentFlowerIndex = 0; 
-
-  } else if (countAsters > 0){
-    currentFlowerIndex = 1;
+  if (countAsters > 0) {
+    for(y = 0; y < countAsters; y++){
+      image(flowerImages[1], random(width), height - 300)
+    }
   }
-  }
+}
+}
 
 
 
@@ -118,8 +120,6 @@ function draw() {
   let y = height / 2 - imageHeight / 2;
 
   image(images[currentImageIndex], x, y);
-
-  image(flowerImages[currentFlowerIndex], 50, height - 300);
 
   textSize(20);
   fill(255);
