@@ -122,8 +122,6 @@ function draw() {
 
   image(images[currentImageIndex], x, y); 
 
-  addFlowers();
-
   textSize(20);
   fill(255);
   textAlign(CENTER, TOP);
@@ -133,4 +131,6 @@ function draw() {
   text("/", width / 2 + 100, 20);
   daySelect.position(width / 2 + 110, 20);
 
+  addFlowers();
+  
 }
