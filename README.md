@@ -62,6 +62,8 @@ Taking inspiration from natural imagery, I wanted to create a sketch that used d
 
 Some of the specific syntax in this code was given to me by both chatGPT, and some external help from a family member. This was because I couldn't get certain parts of the syntax we learnt in class to work for what I was trying to achieve.
 
+The code loses some functionality after September, and the background images stop changing, while the flowers just keep appearing on top of one another. Though I am unsure why this is happening, I think it actually adds to the message I was trying to portray. Sometimes we get so caught up in carrying out daily tasks, and dealing with our busy lives that we don't stop to appreciate what is around us. Eventually in this code, time itself stops, and the beautiful things that once went unnoticed, start piling on top of one another, making them unmistakeable, thus forcing you to take notice of them. It acts as a sort of intervention, showing the viewer that if they don't take the time to stop and slow down, the aspects of life they are missing will keep piling and piling.
+
 ### 🟦 Stage 4
 - Name/Alias:
 - Github account:
